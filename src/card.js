@@ -1,8 +1,8 @@
 const fs = require('fs');
 
-const Manager = require('./lib/manager');
-const Engineer = require('./lib/engineer');
-const Intern = require('./lib/intern')
+// const Manager = require('./lib/manager');
+// const Engineer = require('./lib/employee');
+// const Intern = require('./lib/intern');
 
 
 const renderCard = (teamArr) =>{
