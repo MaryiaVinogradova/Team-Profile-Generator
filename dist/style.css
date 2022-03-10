@@ -1,0 +1,23 @@
+body{
+    display: block;
+    flex-wrap: wrap;
+}
+header{
+    font-size: 100px;
+    background-color: rgb(155, 169, 176);
+    height: 160px;
+}
+
+.card{
+    margin: 20px;
+
+}
+
+.card-header{
+    background-color: rgb(216, 216, 216);
+}
+
+.card-group{
+    display: flex;
+    flex-wrap: wrap;
+}
