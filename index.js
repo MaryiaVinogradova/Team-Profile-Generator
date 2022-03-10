@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const Manager = require('./lib/manager');
-const Engineer = require('./lib/employee');
+const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 const generateHTML = require('./src/card')
 
@@ -28,7 +28,7 @@ function finishTeam(){
    },
    {
       type: "input",
-      name: "officeNumer",
+      name: "officeNumber",
       message: "What is your office number?"
    },
   ])
@@ -86,7 +86,7 @@ function nextTeamEngineer(){
    },
     ])
     .then((response) => {
-      const employee = new Engineer(response.name, response.id, response.email, response.gitHub, 'Engineer');
+      const employee = new Engineer(response.name, response.position, response.id, response.email, response.gitHub, 'Engineer');
 
       teamArr.push(employee);
 

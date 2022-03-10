@@ -1,10 +1,5 @@
 const fs = require('fs');
 
-// const Manager = require('./lib/manager');
-// const Engineer = require('./lib/employee');
-// const Intern = require('./lib/intern');
-
-
 const renderCard = (teamArr) =>{
   let cardHTML = ""
   let inputInfo = ""
@@ -12,20 +7,22 @@ const renderCard = (teamArr) =>{
   for (let i=0; i<teamArr.length; i++){
     const element = teamArr[i];
 
-    let position = element.position
-    
+    let position = element.position;
 
-    if (element.position === "Manager") {
-      inputInfo = `Office number: ${element.officeNumber()}`
+    if (element.position === 'Manager') {
+      inputInfo = `Office number: ${element.getOfficeNumber()}`
       position = `Position: ${element.getPosition()}`
-    }else if (element.position === "Engineer"){
-      inputInfo = `GitHub: <a href="http//github.com/${element.getGitHub()}">${element.getGitHub()}</a>`
+      
     }else if(element.position === 'Intern'){
       inputInfo = `School: ${element.getSchool()}`
       position = `Position: ${element.getPosition()}`
+ 
+    }else if (element.position === 'Engineer'){
+      inputInfo = `GitHub: <a href="http//github.com/${element.getGitHub()}">${element.getGitHub()}</a>`
+      position = `Position: ${element.getPosition()}`
     }
-  
-   console.log("hello" + inputInfo);
+   console.log(inputInfo);
+
     cardHTML += 
   `<div class="card" style="width: 18rem;">
      <div class="card-header">
@@ -36,7 +33,7 @@ const renderCard = (teamArr) =>{
    <div class="card-body">
     <ul class="list-group m-3">
       <li class="list-group-item">ID: ${element.getId()}</li>
-      <li class="list-group-item">Email: ${element.getEmail()}</li>
+      <li class="list-group-item">Email: <a href="mailto:${element.getEmail()}">${element.getEmail()}</a></li>
       <li class="list-group-item">${inputInfo}</li>
     </ul>
    </div>
@@ -64,7 +61,7 @@ const generateHTML = (teamArr) =>{
   
   <header class="text-center">Your team</header>
 
-  <div card-group justify-content-center">
+  <div class="card-group justify-content-center">
    <div class="card d-flex flex-row justify-content-center flex-wrap">
       ${renderCard(teamArr)}
    </div>  
