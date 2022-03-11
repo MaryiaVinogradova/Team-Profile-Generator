@@ -3,9 +3,7 @@ const fs = require('fs');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
-const generateHTML = require('./src/card')
-
-// let teamArr = [];
+const generateHTML = require('./src/card');
 
 let teamArr ={
   manager:"",
@@ -41,7 +39,6 @@ function finishTeam(){
   ])
 
   .then((response) => {
-    // const employee = new Manager(response.name, response.id, response.email, response.officeNumber);
     teamArr.manager = new Manager(response.name, response.id, response.email, response.officeNumber);
 
     nextTeamEmployee()

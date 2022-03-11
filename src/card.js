@@ -28,8 +28,8 @@ const generateHTML = ({manager, engineers, interns}) =>{
    <div class="card-body">
     <ul class="list-group m-3">
     <li class="list-group-item">ID: ${manager.getId()}</li>
-    <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-    <li class="list-group-item">Office number:${manager.getOfficeNumber()}</li>
+    <li class="list-group-item">Email: <a href="mailto: ${manager.getEmail()}">${manager.getEmail()}</a></li>
+    <li class="list-group-item">Office number: ${manager.getOfficeNumber()}</li>
     </ul>
    </div>
    </div>
@@ -66,7 +66,7 @@ const renderEngineer = (engineer) =>{
 <div class="card-body">
  <ul class="list-group m-3">
    <li class="list-group-item">ID: ${engineer.getId()}</li>
-   <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+   <li class="list-group-item">Email: <a href="mailto: ${engineer.getEmail()}">${engineer.getEmail()}</a></li>
    <li class="list-group-item">GitHub: <a href="http//github.com/${engineer.getGitHub()}">${engineer.getGitHub()}</a></li>
  </ul>
 </div>
@@ -86,7 +86,7 @@ const renderIntern = (intern) => {
     <ul class="list-group m-3">
       <li class="list-group-item">ID: ${intern.getId()}</li>
       <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
-      <li class="list-group-item">School:${intern.getSchool()}</li>
+      <li class="list-group-item">School: ${intern.getSchool()}</li>
     </ul>
    </div>
   </div>

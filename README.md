@@ -36,7 +36,7 @@
 
 
   Movie:
-  https://github.com/MaryiaVinogradova/Readme-generator/blob/main/My%20Movie.mp4
+  https://drive.google.com/file/d/1qiBeZS-Kn6NHngydinPGejat0h5J58Hc/view?usp=sharing
 
   Link to repo:
   https://github.com/MaryiaVinogradova/Team-Profile-Generator.git
