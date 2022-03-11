@@ -1,51 +1,7 @@
 const fs = require('fs');
 
-const renderCard = (teamArr) =>{
-  let cardHTML = ""
-  let inputInfo = ""
+const generateHTML = ({manager, engineers, interns}) =>{
 
-  for (let i=0; i<teamArr.length; i++){
-    const element = teamArr[i];
-
-    let position = element.position;
-
-    if (element.position === 'Manager') {
-      inputInfo = `Office number: ${element.getOfficeNumber()}`
-      position = `Position: ${element.getPosition()}`
-      
-    }else if(element.position === 'Intern'){
-      inputInfo = `School: ${element.getSchool()}`
-      position = `Position: ${element.getPosition()}`
- 
-    }else if (element.position === 'Engineer'){
-      inputInfo = `GitHub: <a href="http//github.com/${element.getGitHub()}">${element.getGitHub()}</a>`
-      position = `Position: ${element.getPosition()}`
-    }
-   console.log(inputInfo);
-
-    cardHTML += 
-  `<div class="card" style="width: 18rem;">
-     <div class="card-header">
-      <h2 class="card-title">${element.getName()}</h2>
-      <h2 class="card-title">${element.getPosition()}</h2>
-     </div> 
-
-   <div class="card-body">
-    <ul class="list-group m-3">
-      <li class="list-group-item">ID: ${element.getId()}</li>
-      <li class="list-group-item">Email: <a href="mailto:${element.getEmail()}">${element.getEmail()}</a></li>
-      <li class="list-group-item">${inputInfo}</li>
-    </ul>
-   </div>
-  </div>
-  `
-  }
-  return cardHTML
-}
-
-const generateHTML = (teamArr) =>{
-
-  
   return `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -56,22 +12,85 @@ const generateHTML = (teamArr) =>{
 
   </head>
   
-  
   <body>
   
   <header class="text-center">Your team</header>
 
   <div class="card-group justify-content-center">
    <div class="card d-flex flex-row justify-content-center flex-wrap">
-      ${renderCard(teamArr)}
-   </div>  
-  </div>   
+
+   <div class="card" style="width: 18rem;">
+   <div class="card-header">
+    <h2 class="card-title">${manager.getName()}</h2>
+    <h2 class="card-title">Manager</h2>
+   </div> 
+
+   <div class="card-body">
+    <ul class="list-group m-3">
+    <li class="list-group-item">ID: ${manager.getId()}</li>
+    <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
+    <li class="list-group-item">Office number:${manager.getOfficeNumber()}</li>
+    </ul>
+   </div>
+   </div>
+
+   ${
+    engineers.map(element => {
+        return renderEngineer(element)
+    }).join("")
+  }    
+  
+  ${
+    interns.map(element => {
+        return renderIntern(element)
+    }).join("")
+  }
+  </div>
+</div>
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   </body>
-  </html>`
+  </html>`;
 
-}
+};
+
+const renderEngineer = (engineer) =>{
+  return `
+  <div class="card" style="width: 18rem;">
+  <div class="card-header">
+   <h2 class="card-title">${engineer.getName()}</h2>
+   <h2 class="card-title">Engineer</h2>
+  </div> 
+
+<div class="card-body">
+ <ul class="list-group m-3">
+   <li class="list-group-item">ID: ${engineer.getId()}</li>
+   <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+   <li class="list-group-item">GitHub: <a href="http//github.com/${engineer.getGitHub()}">${engineer.getGitHub()}</a></li>
+ </ul>
+</div>
+</div>
+  `
+};
+
+const renderIntern = (intern) => {
+  return `
+  <div class="card" style="width: 18rem;">
+     <div class="card-header">
+      <h2 class="card-title">${intern.getName()}</h2>
+      <h2 class="card-title">Intern</h2>
+     </div> 
+
+   <div class="card-body">
+    <ul class="list-group m-3">
+      <li class="list-group-item">ID: ${intern.getId()}</li>
+      <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+      <li class="list-group-item">School:${intern.getSchool()}</li>
+    </ul>
+   </div>
+  </div>
+  `
+};
 
   module.exports = generateHTML;

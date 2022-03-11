@@ -5,10 +5,17 @@ const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 const generateHTML = require('./src/card')
 
-let teamArr = [];
+// let teamArr = [];
+
+let teamArr ={
+  manager:"",
+  engineers:[],
+  interns:[],
+};
 
 
 function finishTeam(){
+
   inquirer
   .prompt([
     {
@@ -34,8 +41,8 @@ function finishTeam(){
   ])
 
   .then((response) => {
-    const employee = new Manager(response.name, response.id, response.email, response.officeNumber);
-    teamArr.push(employee);
+    // const employee = new Manager(response.name, response.id, response.email, response.officeNumber);
+    teamArr.manager = new Manager(response.name, response.id, response.email, response.officeNumber);
 
     nextTeamEmployee()
   });
@@ -56,7 +63,7 @@ function nextTeamEmployee(){
         if (response.nextTeamEmployee === "Engineer"){ nextTeamEngineer()
         }else if(response.nextTeamEmployee === "Intern"){ nextTeamIntern()
         }else{
-          finished()
+        finished()
         }
       });
     }
@@ -88,7 +95,7 @@ function nextTeamEngineer(){
     .then((response) => {
       const employee = new Engineer(response.name, response.position, response.id, response.email, response.gitHub, 'Engineer');
 
-      teamArr.push(employee);
+      teamArr.engineers.push(employee);
 
       nextTeamEmployee()
     })
@@ -120,7 +127,7 @@ function nextTeamIntern(){
   ])
   .then((response) => {
     const employee = new Intern(response.name, response.id, response.email, response.school, 'Intern');
-    teamArr.push(employee);
+    teamArr.interns.push(employee);
 
     nextTeamEmployee();
   });
